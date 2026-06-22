@@ -1,24 +1,22 @@
 package com.careerpilot.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
+@Schema(description = "User Registration Request")
 public class RegisterRequest {
 
-    @NotBlank(message = "Full Name is required")
+    @Schema(example = "Gaurav Arora")
     private String fullName;
 
-    @Email(message = "Enter valid email")
-    @NotBlank(message = "Email is required")
+    @Schema(example = "gaurav@test.com")
     private String email;
 
-    @Size(min = 6, message = "Password must be at least 6 characters")
+    @Schema(example = "password123")
     private String password;
 }
