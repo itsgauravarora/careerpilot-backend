@@ -5,6 +5,7 @@ import com.careerpilot.entity.User;
 import com.careerpilot.service.AuthService;
 import org.springframework.web.bind.annotation.*;
 import com.careerpilot.dto.LoginRequest;
+import jakarta.validation.Valid;
 
 import com.careerpilot.dto.LoginResponse;
 
@@ -19,7 +20,7 @@ public class AuthController {
     }
 
         @PostMapping("/register")
-        public User register(@RequestBody RegisterRequest request) {
+        public User register(@Valid @RequestBody RegisterRequest request) {
             return authService.register(request);
         }
     @GetMapping("/test")
