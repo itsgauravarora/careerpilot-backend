@@ -39,6 +39,7 @@ public class AuthController {
                 request.getPassword()
         );
     }
+
     @PostMapping("/jwt-login")
     public LoginResponse jwtLogin(
             @RequestBody LoginRequest request) {

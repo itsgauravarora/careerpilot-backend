@@ -28,6 +28,7 @@ public class JobApplicationService {
                         new RuntimeException("User not found"));
     }
 
+
     public List<JobApplication> getAllJobs(String email) {
 
         User user = getCurrentUser(email);
@@ -157,6 +158,16 @@ public class JobApplicationService {
                                 "Rejected".equalsIgnoreCase(job.getStatus()))
                         .count());
 
+
         return stats;
+    }
+    public List<JobApplication> searchJobs(
+            User user,
+            String keyword) {
+
+         return repository
+                .findByUserAndCompanyNameContainingIgnoreCase(
+                        user,
+                        keyword);
     }
 }

@@ -7,14 +7,25 @@ import com.careerpilot.dto.DashboardStats;
 import jakarta.validation.Valid;
 import java.util.List;
 
+import com.careerpilot.entity.User;
+import com.careerpilot.repository.UserRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
 @RestController
 @RequestMapping("/api/jobs")
 public class JobApplicationController {
 
     private final JobApplicationService service;
+    private final UserRepository userRepository;
 
-    public JobApplicationController(JobApplicationService service) {
+    public JobApplicationController(
+            JobApplicationService service,
+            UserRepository userRepository) {
+
         this.service = service;
+        this.userRepository = userRepository;
     }
 
     @GetMapping
@@ -24,6 +35,7 @@ public class JobApplicationController {
         return service.getAllJobs(
                 principal.getName());
     }
+
 
     @PostMapping
     public JobApplication createJob(
@@ -93,4 +105,6 @@ public class JobApplicationController {
         return service.getDashboardStats(
                 principal.getName());
     }
+
+
 }
