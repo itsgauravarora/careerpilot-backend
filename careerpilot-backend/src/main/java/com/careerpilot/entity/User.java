@@ -22,9 +22,9 @@ public class User {
 
     @NotBlank(message = "Full name is required")
     private String fullName;
-    @Column(unique = true)
     @Email(message = "Invalid email format")
     @NotBlank(message = "Email is required")
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
     @NotBlank(message = "Password is required")
