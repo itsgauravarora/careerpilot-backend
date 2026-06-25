@@ -11,6 +11,7 @@
     import org.springframework.web.cors.CorsConfiguration;
     import org.springframework.web.cors.CorsConfigurationSource;
     import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+    import org.springframework.security.config.http.SessionCreationPolicy;
 
     @Configuration
     public class SecurityConfig {
@@ -30,16 +31,17 @@
             http
                     .cors(Customizer.withDefaults())
                     .csrf(csrf -> csrf.disable())
+                    .sessionManagement(session ->
+                            session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    )
                     .authorizeHttpRequests(auth -> auth
                             .requestMatchers(
                                     "/api/auth/**",
                                     "/swagger-ui/**",
                                     "/v3/api-docs/**",
                                     "/swagger-ui.html"
-                            )
-                            .permitAll()
-                            .anyRequest()
-                            .authenticated()
+                            ).permitAll()
+                            .anyRequest().authenticated()
                     )
                     .addFilterBefore(
                             jwtAuthenticationFilter,
