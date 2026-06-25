@@ -22,7 +22,7 @@ public class User {
 
     @NotBlank(message = "Full name is required")
     private String fullName;
-
+    @Column(unique = true)
     @Email(message = "Invalid email format")
     @NotBlank(message = "Email is required")
     private String email;
